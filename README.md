@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a modular framework for building, training, and evaluating machine learning models, with a strong focus on neural networks. It provides both custom (NumPy-based) and TensorFlow-based implementations, supporting regression and classification tasks, model selection, hyperparameter tuning, and performance evaluation.
+This project is a modular framework for building, training, and evaluating machine learning models, with a strong focus on neural networks. It provides both custom (NumPy-based) and TensorFlow-based implementations, supporting regression and classification tasks, model selection, hyperparameter tuning, and performance evaluation
 
 ---
 
