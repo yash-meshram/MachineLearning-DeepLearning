@@ -1,117 +1,158 @@
-# Neural Network and Machine Learning Model Evaluation Framework
+# Machine Learning & Deep Learning
 
-This project provides a comprehensive framework for building, training, and evaluating various machine learning models with a focus on neural networks. It implements multiple optimization algorithms, model evaluation techniques, and supports both regression and classification tasks.
+## Overview
 
-The framework offers a modular approach to machine learning model development, featuring implementations of linear regression, logistic regression, and neural networks using both pure Python/NumPy and TensorFlow. It includes tools for model selection, hyperparameter tuning, and performance evaluation using training, cross-validation, and test datasets.
+This project is a modular framework for building, training, and evaluating machine learning models, with a strong focus on neural networks. It provides both custom (NumPy-based) and TensorFlow-based implementations, supporting regression and classification tasks, model selection, hyperparameter tuning, and performance evaluation.
 
-Key features include:
-- Multiple neural network architectures with configurable layers and activation functions
-- Support for both regression and classification tasks
-- Implementation of optimization algorithms including gradient descent and Adam
-- Comprehensive model evaluation and selection tools
-- Data preprocessing utilities including feature scaling and polynomial feature generation
-- Visualization tools for model performance analysis
+---
+
+## Features
+
+- **Regression (Custom):**  
+  - Linear and logistic regression from scratch
+  - Custom cost functions and gradient descent
+
+- **Neural Networks from Scratch (NumPy):**  
+  - Build neural networks without deep learning libraries
+  - Single and multi-layer architectures
+
+- **Neural Networks with TensorFlow:**  
+  - Deep neural networks using TensorFlow/Keras
+  - Support for both regression and classification tasks
+
+- **Symbolic Differentiation:**  
+  - Symbolic derivatives using SymPy for understanding gradients and backpropagation
+
+- **Optimization Algorithms:**  
+  - Gradient Descent (custom)
+  - Adam Optimizer (TensorFlow)
+
+- **Model Evaluation & Selection:**  
+  - Automated splitting into training, cross-validation, and test sets
+  - Model selection based on cross-validation performance
+  - Visualization of model performance
+
+- **Data Preprocessing:**  
+  - Feature scaling (StandardScaler)
+  - Polynomial feature generation
+
+---
 
 ## Repository Structure
+
 ```
 .
-├── adam_optimization_algorithm.py     # Implementation of Adam optimizer for neural networks
-├── derivatives.py                     # Symbolic differentiation utilities using SymPy
-├── model_evaluation_and_selection_(neural_network).py    # Neural network model evaluation framework
-├── model_evaluation_and_selection.py  # General model evaluation and selection tools
-├── neural_network_1.py               # Basic neural network implementation with one hidden layer
-├── neural_network_2.py               # Neural network with two hidden layers
-├── neural_network_3.py               # Enhanced neural network implementation
-├── neural_network_tensorflow.py       # TensorFlow-based neural network implementation
-├── regression.py                      # Linear and logistic regression implementations
-└── utils.py                          # Utility functions for data processing and visualization
+├── adam_optimization_algorithm.py     # Adam optimizer demo with Keras
+├── derivatives.py                     # Symbolic differentiation with SymPy
+├── model_evaluation_and_selection_(neural_network).py    # NN model evaluation & selection
+├── model_evaluation_and_selection.py  # General model evaluation & selection (regression)
+├── neural_network_1.py                # Basic NumPy NN (1 hidden layer)
+├── neural_network_2.py                # NumPy NN (2 hidden layers, modular)
+├── neural_network_3.py                # Enhanced NumPy NN (vectorized)
+├── neural_network_tensoflow.py        # TensorFlow/Keras NN implementation
+├── regression.py                      # Linear & logistic regression (custom, with GD)
+├── data/
+│   ├── model_evaluation_and_selection_dataset.csv
+│   └── model_evaluation_and_selection_dataset(classification).csv
+└── .venv/, .git/, .vscode/            # Environment, version control, editor settings
 ```
 
-## Usage Instructions
-### Prerequisites
-- Python 3.6 or higher
-- NumPy
-- Pandas
-- Matplotlib
-- TensorFlow 2.x
-- Scikit-learn
-- SymPy
+---
 
-### Installation
+## Installation
+
+**Prerequisites:**
+- Python 3.6+
+- NumPy, Pandas, Matplotlib, TensorFlow 2.x, Scikit-learn, SymPy
+
+**Setup:**
 ```bash
-# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# On Windows:
+venv\Scripts\activate
+# On Linux/Mac:
+source venv/bin/activate
 
-# Install required packages
 pip install numpy pandas matplotlib tensorflow scikit-learn sympy
 ```
 
-### Quick Start
-1. Basic Neural Network Training:
-```python
-from neural_network_tensorflow import Sequential, Dense
+---
 
-# Create a simple neural network
-model = Sequential([
-    Dense(units=25, activation='relu'),
-    Dense(units=15, activation='relu'),
-    Dense(units=3, activation='softmax')
-])
+## Usage
 
-# Compile and train the model
-model.compile(
-    optimizer='adam',
-    loss='categorical_crossentropy',
-    metrics=['accuracy']
-)
-model.fit(X, y, epochs=100)
-```
+Follow this recommended order to understand and experiment with the project step by step:
 
-### More Detailed Examples
-1. Model Evaluation and Selection:
-```python
-from model_evaluation_and_selection import train_test_split, StandardScaler
+### 1. Regression (Custom Implementation)
+- Explore linear and logistic regression, cost functions, and gradient descent from scratch.
+- File: `regression.py`
 
-# Split dataset
-x_train, x_cv, x_test = train_test_split(x, train_size=0.6)
+### 2. Neural Networks from Scratch (NumPy)
+- Build neural networks without any deep learning libraries.
+- Files (in order):
+  - `neural_network_1.py` (single hidden layer, basic)
+  - `neural_network_2.py` (two hidden layers, modular)
+  - `neural_network_3.py` (vectorized, enhanced)
 
-# Scale features
-scaler = StandardScaler()
-x_train_scaled = scaler.fit_transform(x_train)
-x_cv_scaled = scaler.transform(x_cv)
-```
+### 3. Neural Networks with TensorFlow
+- Implement and train neural networks using TensorFlow/Keras.
+- File: `neural_network_tensoflow.py`
 
-### Troubleshooting
-Common Issues:
-1. Memory Errors during Model Training
-   - Reduce batch size
-   - Decrease model complexity
-   - Check for memory leaks in custom layers
+### 4. Symbolic Differentiation
+- Use SymPy for symbolic derivatives, useful for understanding gradients and backpropagation.
+- File: `derivatives.py`
 
-2. Vanishing/Exploding Gradients
-   - Use appropriate weight initialization
-   - Add batch normalization layers
-   - Adjust learning rate
+### 5. Adam Optimization Algorithm (TensorFlow)
+- Demonstrate the Adam optimizer in a neural network context.
+- File: `adam_optimization_algorithm.py`
 
-Debug Mode:
-```python
-import tensorflow as tf
-tf.debugging.set_log_device_placement(True)
-```
+### 6. Model Evaluation & Selection (Regression)
+- Learn about model selection, polynomial features, and evaluation for regression tasks.
+- File: `model_evaluation_and_selection.py`
 
-## Data Flow
-The framework implements a standard machine learning pipeline with data preprocessing, model training, and evaluation phases.
+### 7. Model Evaluation & Selection (Neural Networks)
+- Evaluate and select neural network models for both regression and classification tasks.
+- File: `model_evaluation_and_selection_(neural_network).py`
 
-```ascii
-Input Data → Preprocessing → Model Training → Evaluation → Prediction
-    ↑          (Scaling)      (Training Set)   (CV Set)      ↓
-    └──────────────────── Feedback Loop ─────────────────────┘
-```
+---
 
-Key Component Interactions:
-1. Data preprocessing transforms raw input into model-ready format
-2. Model training optimizes parameters using specified algorithm
-3. Evaluation metrics guide model selection and hyperparameter tuning
-4. Cross-validation ensures model generalization
-5. Prediction pipeline applies trained model to new data
+See each file for code, comments, and examples. The data used for evaluation is in the `data/` directory.
+
+---
+
+## Data
+
+- `data/model_evaluation_and_selection_dataset.csv`: Regression dataset
+- `data/model_evaluation_and_selection_dataset(classification).csv`: Classification dataset
+
+---
+
+## Visualization
+
+- The framework includes plotting for data, model predictions, and error curves (using Matplotlib).
+
+---
+
+## Troubleshooting
+
+- **Memory Errors:** Reduce batch size, decrease model complexity, or check for memory leaks.
+- **Vanishing/Exploding Gradients:** Use proper weight initialization, batch normalization, or adjust learning rate.
+- **Debugging TensorFlow:**  
+  ```python
+  import tensorflow as tf
+  tf.debugging.set_log_device_placement(True)
+  ```
+
+---
+
+## Extending the Framework
+
+- Add new models by following the modular structure.
+- Integrate new datasets by placing them in the `data/` directory and updating the relevant scripts.
+
+---
+
+## License
+
+This project is for educational and research purposes.
+
+---
