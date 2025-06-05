@@ -32,6 +32,7 @@ b2_1 = np.array([3])
 z2_1 = np.dot(w2_1, a1) + b2_1
 a2_1 = sigmoid(z2_1)
 
+# predicted value
 y_hat = 1 if a2_1[0] >= 0.5 else 0
 
 print(f"output = {y_hat}")
